@@ -2,11 +2,6 @@
 import React from 'react'
 var sha256 = require('js-sha256');
 
-
-
-
-
-
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +19,7 @@ class NameForm extends React.Component {
       console.log(xhr.responseText)
     })
     xhr.open('POST', 'https://example.com')
-    xhr.send(JSON.stringify({ example: 'data' }))
+    xhr.send(JSON.stringify({ username: this.username.value, password: sha256(this.password.value)} ))
 
     e.preventDefault();
   }

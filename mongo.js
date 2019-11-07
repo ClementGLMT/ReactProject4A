@@ -47,16 +47,29 @@ return new Promise(function(resolve, reject){
 } 
 
 function connectAPI(docs) {
+    var access;
     console.log("[connectAPI] docs = "+JSON.stringify(docs));
     //TODO 
+    var goodHash = "04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb"
     var app = express(); 
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
     var myRouter = express.Router(); 
+    myRouter.route('/connexion')
+        .get(function(req, res){
+            res.end("[{ access: "+access+" }]")
+            access=false;
+        })
     myRouter.route('/bonhoms')
         .get(function(req,res){ 
             console.log("[connectAPI] Sending docs to API, docs = "+JSON.stringify(docs));
-            res.end(JSON.stringify(docs));
+            res.end(JSON.stringify(docs)); //LA
+        })
+        post(function(req,res){
+            access=false;
+            if(req.username == "user" && req.password == goodHash){
+                access=true;
+            }
         })
     //POST CEST PAS CA il faut utiliser res.send()
     /*.post(function(req,res){
