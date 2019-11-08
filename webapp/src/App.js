@@ -13,16 +13,65 @@ class NameForm extends React.Component {
   handleSubmit(e) {
     alert(this.username.value);
     alert(sha256(this.password.value));
-    window.location.href= '/App2';    
-    var xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', () => {
-      console.log(xhr.responseText)
-    })
-    xhr.open('POST', 'https://example.com')
-    xhr.send(JSON.stringify({ username: this.username.value, password: sha256(this.password.value)} ))
+    fetch('http://localhost:3000/connexion', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-type':'application/json' },
+      body :JSON.stringify({
+        'username': this.username.value, 
+        'password': sha256(this.password.value)
+      })
+  })
+  .then((response) => response.json())
+  //If response is in json then in success
+  .then()
+  //If response is not in json then in error
+  .catch((error) => {
+      //Error 
+      console.error(error);
+  })
+      /* fetch('http://localhost:3000/connexion', {
+      method: 'GET',
+      headers: {'Accept':'application.json'}
+      //Request Type 
+  })
+  .then(response => {response.json()})
+  //If response is in json then in success
+  .then(responseJson => {
+      //Success 
+      alert("success "+responseJson);
+        if(responseJson.access){
+          window.location.href= '/App2';    
+        }
+  })
+  //If response is not in json then in error
+  .catch((error) => {
+      //Error 
+      console.error(error);
+  })*/
+   setTimeout( () => {
+    var Http = new XMLHttpRequest();
+    var url='http://localhost:3000/connexion';
+    Http.open("GET", url);
+   Http.send();
 
+    Http.onreadystatechange = function () {
+      if(this.readyState === 4 && this.status === 200){
+        console.log(Http.response);
+        var json = JSON.parse(Http.response);
+        //console.log(JSON.parse('{ "fruit": "pineapple", "fingers": 10 }'))
+        console.log(Http.response);
+
+        if(json.access){
+          window.location.href= '/App2';    
+        }
+      }
+    };
+   }
+   , 350);
+    
     e.preventDefault();
   }
+
 
   render() {
     
