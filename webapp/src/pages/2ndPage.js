@@ -2,12 +2,14 @@ import React from 'react'
 
 class App2 extends React.Component {
 
-    render() {
 
-        return(
-            <p>BV champion</p>
-        );
-    }
+render(){
+    return <p>BV champion</p>;
+
+}
+    
+
+    
 
 }
 
