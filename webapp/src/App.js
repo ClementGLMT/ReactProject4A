@@ -1,105 +1,39 @@
 import React from 'react'
-//import ndPage from './pages/2ndPage.js'
-var sha256 = require('js-sha256');
+import Page1 from './pages/Page1.js'
 
 
-//export default class App extends React.Component{
-function App(){
-
-var isLoggedIn = false;
-
-  function NameForm(props){
-
-    var username='';
-    var password='';
-
-    function handleSubmit() {
-      console.log("username : "+username);
-      console.log(sha256("passwd : "+String(password)));
-      fetch('http://localhost:3000/connexion', {
-        method: 'POST',
-        headers: JSON.stringify({ "Accept": "application/json", "Content-type":"application/json" }),
-        body :JSON.stringify({
-          'username': username, 
-          'password': sha256(String(password))
-        })
-    })
-    .then((response) => response.json())
-    //If response is in json then in success
-    .then()
-    //If response is not in json then in error
-    .catch((error) => {
-        //Error 
-        console.error(error);
-    })
-    
-     setTimeout( () => {
-      var Http = new XMLHttpRequest();
-      var url='http://localhost:3000/connexion';
-      Http.open("GET", url);
-     Http.send();
+export default class App extends React.Component{
   
-      Http.onreadystatechange = function () {
-        if(this.readyState === 4 && this.status === 200){
-          console.log(Http.response);
-          var json = JSON.parse(Http.response);
-          //console.log(JSON.parse('{ "fruit": "pineapple", "fingers": 10 }'))
-          console.log(Http.response);
-          if(json.access){
-            console.log("Access accepted");
-              isLoggedIn = true;        
-          }
-        }
-      };
-     }
-     , 350);
-        }
-
-    return (
-    <form style={{
-      position: 'absolute', left: '50%', top: '50%',
-      transform: 'translate(-50%, -50%)'
-  }} onSubmit={handleSubmit}>
-      <label>
-        
-        <input  style={{
-      position: 'absolute', left: '50%',
-      transform: 'translate(-50%, -50%)'
-  }} placeholder="username" ref={(usernam) => username= usernam} /> 
-  <p></p>
-        <input   placeholder="password" type="text" ref={(passwor) => password= passwor}
-        />
-      </label>
-      <p></p>
-      <p></p>
-      <input style={{
-      position: 'absolute', left: '50%',
-      transform: 'translate(-50%, -50%)'
-  }}type="submit" value="Submit" />
-    </form>)
+  constructor(props) {
+    super(props);
+    //this.handleSubmit = this.handleSubmit.bind(this);
+    //this.isLoggedIn = false;
+    this.state = {
+      isLoggedIn: "false"
+    }
 
   }
 
-  function NdPage(){
-    return <p>BV champion</p>;
-  }
+  onUpdate = (val) => {
+    this.setState({
+      isLoggedIn: val
+    })
+  };
 
+render(){
 
-function Page1(props){
-  if(isLoggedIn){
-    return <NdPage/>
-  }
-  else {
-    return <NameForm user='' passwd='' />
-  }
-}
+  console.log("log in parent : "+this.state.isLoggedIn)
   return(
-    <Page1 user='1' passwd='2'/>
+  <div>
+    <Page1 isLoggedIn={this.state.isLoggedIn} onUpdate={this.onUpdate}/>
+  </div>   
   )
+  
+  }
+
 }
 
-export default App;
+
   
 
 
-//}
