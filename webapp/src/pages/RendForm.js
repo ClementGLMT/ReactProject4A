@@ -6,39 +6,39 @@ export default class RendForm extends React.Component{
 
     constructor(props) {
         super(props);
-        //this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
           isLoggedIn: "false",
-          isUnvalidated: "false"
+          update: (isLoggedIn) => {
+              console.log("updating rendform")
+            if( (isLoggedIn !== this.state.isLoggedIn)){
+                this.props.onUpdate(isLoggedIn);
+                this.setState({isLoggedIn: isLoggedIn});
+            }
+
+          }
         }
+        this.state.update(this.state.isLoggedIn);
+
     
       }
 
-      //probleme onUpdate
-      onUpdate = (val, val2) => {
-        this.setState({
-            isLoggedIn: val,
-          isUnvalidated: val2
-        })
+      onUpdate = (val) => {
+          //if(val !== this.state.isLoggedIn )
+            this.setState({ isLoggedIn: val})
+            this.state.update(this.state.isLoggedIn);
+
+       // if(val2 !== this.state.isUnvalidated)
       };
 
 render(){
-    console.log("isUnvalidated : "+this.state.isUnvalidated);
-    if(this.state.isUnvalidated === "false"){
+    this.setState(this.state)
         return(
-         <NameForm onUpdate={this.props.onUpdate} handleSubmit = {this.props.handleSubmit}/>
+         <NameForm onUpdate={() => this.onUpdate} handleSubmit = {this.props.handleSubmit}/>
         )
-      }
-      else {
-        return(
-          <div>
-        <p color="red" style={{
-          position: 'absolute', left: '50%', 
-          transform: 'translate(-50%, -50%)'}}>Wrong Credentials !</p>
-        <NameForm onUpdate={this.props.onUpdate} handleSubmit = {this.props.handleSubmit}/>
-        </div>
-        )
-      }
+     
+        
+    
+
 }
 
 }

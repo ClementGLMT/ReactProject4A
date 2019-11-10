@@ -8,15 +8,17 @@ class NameForm extends React.Component {
     super(props);
     this.state = {
       isLoggedIn: false,
-      isUnvalidated: false,
-      update: (isLoggedIn, isUnvalidated) => {
-        console.log("in update "+isLoggedIn, isUnvalidated);
-        this.props.onUpdate(isLoggedIn, isUnvalidated);
-        this.setState({isLoggedIn: isLoggedIn, isUnvalidated: isUnvalidated});
+      update: (isLoggedIn) => {
+        console.log("updating nameform with "+isLoggedIn);
+        this.props.onUpdate(isLoggedIn);
+        this.setState({isLoggedIn: isLoggedIn});
+
       }
     }
+    //this.state.update(this.state.isLoggedIn);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
 
   
 
@@ -25,7 +27,6 @@ class NameForm extends React.Component {
     var upd = this.state.update;
     var us = this.username.value;
     var pw =  sha256(this.password.value);
-    var Unval=false;
     this.username.value = "";
     this.password.value = "";
 
@@ -61,13 +62,11 @@ class NameForm extends React.Component {
         console.log("json access before assignment "+json.access);
         log=json.access;
         if(String(log) === "false"){
-          Unval = true;
+          alert("Invalid username or password");
         }
-        upd(String(log), String(Unval));
+      upd(String(log));
       }
-    }
-    this.setState({isUnvalidated: String(log)})
-    ;
+    };
    }
    , 350);
  
@@ -76,6 +75,7 @@ class NameForm extends React.Component {
 
 
   render() {
+    //this.state.update(this.state.isLoggedIn);
     
     return (<div>
       <form style={{
