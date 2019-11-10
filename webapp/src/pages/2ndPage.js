@@ -1,5 +1,6 @@
 import React from 'react'
 import Chart from 'react-google-charts'
+import MediaQuery from 'react-responsive';
 
 class App2 extends React.Component {
 
@@ -238,6 +239,7 @@ var pie = this.pieParser(data);
     var bub = this.bubbleParser(data);
     return (
 
+        
         <div>
         <h1>Hello user !</h1>
 
@@ -304,7 +306,6 @@ var pie = this.pieParser(data);
       title: 'Continent',
     },
   }}
-  // For tests
   rootProps={{ 'data-testid': '1' }}
 />
         </div>
