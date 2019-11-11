@@ -8,7 +8,7 @@
 
 ## Credentials : 
 
-username :  __user__
-password :  __user__
+- username :  __user__
+- password :  __user__
 
 
