@@ -14,7 +14,6 @@ class NameForm extends React.Component {
     this.state = {
       isLoggedIn: false,
       update: (isLoggedIn) => {
-        console.log("updating nameform with "+isLoggedIn);
         this.props.onUpdate(isLoggedIn);
         this.setState({isLoggedIn: isLoggedIn});
 
