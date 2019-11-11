@@ -8,7 +8,7 @@
 
 ## Credentials : 
 
-username : **Strong** __user__
-password : **Strong** __user__
+username :  __user__
+password :  __user__
 
 
