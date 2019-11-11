@@ -287,6 +287,7 @@ render(){
                   hAxis: {
                     title: 'Eye color',
                     minValue: 0,
+
                     
                   },
                   vAxis: {
