@@ -2,7 +2,8 @@
 
 ## Launching : 
 
-Do `node webapp/src/mongo.js`
-then `cd webapp` and `npm start`
+1. `node webapp/src/mongo.js`
+2. `cd webapp` 
+3. `npm start`
 
 
