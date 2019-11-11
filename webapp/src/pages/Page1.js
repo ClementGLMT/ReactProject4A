@@ -21,12 +21,15 @@ export default class Page1 extends React.Component {
     render(){
         console.log("[page1] test with isloggedin : "+this.state.isLoggedIn)
         if(this.state.isLoggedIn === "true"){
-            console.log("Affichage ndpage : "+this.state.isLoggedIn)
-            return <NdPage/>;
-        }
+        console.log("Affichage ndpage : "+this.state.isLoggedIn)
+        return <NdPage />;
+      }
+    
+         
+        
         else {        return <NameForm onUpdate={this.onUpdate}/>;
     }
-    
+
     }
 
 }
