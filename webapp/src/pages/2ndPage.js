@@ -16,7 +16,7 @@ class App2 extends React.Component {
 componentDidMount(){
     const self = this;
     var Http = new XMLHttpRequest();
-    var url='http://localhost:3000/bonhoms';
+    var url='http://localhost:2999/bonhoms';
     Http.open("GET", url);
    Http.send();
 

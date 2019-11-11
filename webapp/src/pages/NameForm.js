@@ -33,7 +33,7 @@ class NameForm extends React.Component {
     this.username.value = "";
     this.password.value = "";
 
-    fetch('http://localhost:3000/connexion', {
+    fetch('http://localhost:2999/connexion', {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-type':'application/json' },
       body :JSON.stringify({
@@ -49,7 +49,7 @@ class NameForm extends React.Component {
   
    setTimeout( () => {
     var Http = new XMLHttpRequest();
-    var url='http://localhost:3000/connexion';
+    var url='http://localhost:2999/connexion';
     Http.open("GET", url);
    Http.send();
 
