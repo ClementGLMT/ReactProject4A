@@ -1,6 +1,8 @@
 import React  from 'react'
 import Chart from 'react-google-charts'
 import MediaQuery from 'react-responsive';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+
 
 
 class App2 extends React.Component {
@@ -266,7 +268,15 @@ render(){
 
  
         <div >
-                <Chart  width={300}
+            <Grid fluid>
+        <Row>
+          <Col xs={6} md={3}>
+            Hello, world!
+          </Col>
+        </Row>
+      </Grid>
+                <Chart  
+                width={300}
                 height={300}
                 chartType="ColumnChart"
                 loader={<div>Loading Chart</div>}
@@ -277,6 +287,7 @@ render(){
                   hAxis: {
                     title: 'Eye color',
                     minValue: 0,
+                    
                   },
                   vAxis: {
                     title: 'Number of people',
