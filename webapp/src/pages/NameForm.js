@@ -1,6 +1,11 @@
 /*eslint-disable no-unused-expressions */
 import React from 'react'
+//import image from '../background_login.jpeg';
+
+
 var sha256 = require('js-sha256');
+
+
 
 class NameForm extends React.Component {
 
@@ -15,7 +20,6 @@ class NameForm extends React.Component {
 
       }
     }
-    //this.state.update(this.state.isLoggedIn);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -30,8 +34,6 @@ class NameForm extends React.Component {
     this.username.value = "";
     this.password.value = "";
 
-    //alert(this.username.value);
-    //alert(sha256(this.password.value));
     fetch('http://localhost:3000/connexion', {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-type':'application/json' },
@@ -41,11 +43,8 @@ class NameForm extends React.Component {
       })
   })
   .then((response) => response.json())
-  //If response is in json then in success
   .then()
-  //If response is not in json then in error
   .catch((error) => {
-      //Error 
       console.error(error);
   })
   
@@ -57,9 +56,7 @@ class NameForm extends React.Component {
 
     Http.onreadystatechange = function () {
       if(this.readyState === 4 && this.status === 200){
-        console.log(Http.response);
         var json = JSON.parse(Http.response);
-        console.log("json access before assignment "+json.access);
         log=json.access;
         if(String(log) === "false"){
           alert("Invalid username or password");
@@ -75,9 +72,12 @@ class NameForm extends React.Component {
 
 
   render() {
-    //this.state.update(this.state.isLoggedIn);
     
-    return (<div>
+    return (<div >
+      <h1 style={{
+        position: 'absolute', left: '50%', top: '25%',
+        transform: 'translate(-50%, -50%)'
+    }}>Please log in !</h1>
       <form style={{
         position: 'absolute', left: '50%', top: '50%',
         transform: 'translate(-50%, -50%)'
@@ -87,16 +87,17 @@ class NameForm extends React.Component {
           <input  style={{
         position: 'absolute', left: '50%',
         transform: 'translate(-50%, -50%)'
-    }} placeholder="username" ref={(username) => this.username = username} /> <p></p>
-          <input  placeholder="password" type="password" ref={(password) => {
+    }} placeholder="username" ref={(username) => this.username = username} /> <p> </p>        <p> </p>
+
+          <input   placeholder="password" type="password" ref={(password) => {
                         this.password = password} 
           }
           />
         </label>
-        <p></p>
+        <p> </p>
         <p></p>
         <input style={{
-        position: 'absolute', left: '50%',
+        position: 'absolute', left: '50%',  
         transform: 'translate(-50%, -50%)'
     }}type="submit" value="Submit" />
       </form>

@@ -1,7 +1,7 @@
 import React  from 'react'
 import Chart from 'react-google-charts'
-import MediaQuery from 'react-responsive';
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import MediaQuery from 'react-responsive';
 
 
 
@@ -22,7 +22,6 @@ componentDidMount(){
 
     Http.onreadystatechange = function () {
       if(this.readyState === 4 && this.status === 200){
-        console.log(Http.response);
         var json = JSON.parse(Http.response);
         self.setState({data: json})
       }
@@ -40,7 +39,6 @@ pieParser(data){
     pie[data.length] = new Array(2);
     for(i=0; i<data.length; i++){
     pie[i] = new Array(2);
-        console.log("testing "+data[i].name)
 
         if(data[i].favColor === "blue"){
             bluesum++;
@@ -61,7 +59,6 @@ pieParser(data){
            yellowsum++;
        }
     }
-    console.log("blue"+bluesum+"red"+redsum+"brown"+brownsum+"black"+blacksum+"green"+greensum+"yellow"+yellowsum)
      pie[0][0] = "Color"
      pie[0][1] = "Number of people which has this color as favorite";
      
@@ -98,7 +95,6 @@ scatterParser(data){
         scat[i][0]= data[i-1].gradePointAverage;
         scat[i][1] = data[i-1].educationCoefficient;
     }
-    console.log(scat.toString());
     return scat;
 }
 
@@ -112,8 +108,6 @@ columnParser(data){
     }
 
     for(i=0; i<data.length; i++){
-        //col[i] = new Array(2);
-        console.log("[col ]testing "+data[i].name)
 
         if(data[i].eyeColor === "blue"){
             bluesum++;
@@ -125,7 +119,6 @@ columnParser(data){
            greensum++;
        }
     }
-    console.log("blue"+bluesum+"brown"+brownsum+"green"+greensum)
      col[0]=    [
         'Element',
         'Density',
@@ -164,7 +157,6 @@ bub[5]= ["Africa",0,0];
 bub[6]= ["Oceania",0,0];
 
 for(i=0; i<data.length; i++){
-    console.log("Treating "+data[i].name+"data.length = "+data.length)
 
     switch (data[i].continent){
 
@@ -241,14 +233,9 @@ for(i=0; i<data.length; i++){
 
 }
 for(i=1; i<bub.length; i++){
-    console.log("Men sum : "+bub[i][1]+" Women sum : "+bub[i][2]+" for "+bub[i][0])
     bub[i][1] = bub[i][1]/nbmale;
     bub[i][2] = bub[i][2]/nbfemale;
 }
-
-
-console.log(bub.toString())
-console.log(nbmale+" males and "+nbfemale)
 
 
 return bub;
@@ -256,7 +243,10 @@ return bub;
 
 
 
+
+
 render(){
+
     
     var col = this.columnParser(this.state.data);
    var pie = this.pieParser(this.state.data);
@@ -266,18 +256,20 @@ render(){
       return (
 
 
- 
-        <div >
-            <Grid fluid>
-        <Row>
-          <Col xs={6} md={3}>
-            Hello, world!
-          </Col>
-        </Row>
-      </Grid>
-                <Chart  
-                width={300}
-                height={300}
+        <div>
+        <MediaQuery query= "(min-width: 1600px)">
+        <h1  style = {{textAlign: 'center', color: 'black', fontFamily: 'verdana' }}> WELCOME USER !</h1>
+        <p></p>
+        <p></p>
+        <p></p>
+
+
+        <Grid fluid>
+                <Row>
+                    <Col >
+                        <Chart  
+                            width={'400px'}
+                height={'500px'}
                 chartType="ColumnChart"
                 loader={<div>Loading Chart</div>}
                 data={col}
@@ -287,30 +279,31 @@ render(){
                   hAxis: {
                     title: 'Eye color',
                     minValue: 0,
-
-                    
                   },
                   vAxis: {
                     title: 'Number of people',
                   },
                 }}
                 legendToggle/>
-        
-        <Chart
-          width={'500px'}
-          height={'300px'}
-          chartType="PieChart"
-          loader={<div>Loading Chart</div>}
-          data={pie}
-          options={{
+                    </Col>
+                     <Col >
+                        <Chart
+                             width={'400px'}
+                             height={'500px'}
+                            chartType="PieChart"
+                            loader={<div>Loading Chart</div>}
+                             data={pie}
+                            options={{
             title: 'Favorite colors',
             is3D: true,
           }}
-          rootProps={{ 'data-testid': '2' }}
-        />
-        <Chart
-          width={'500px'}
-          height={'300px'}
+                             rootProps={{ 'data-testid': '2' }}
+                        />
+                    </Col>
+                    <Col >
+                        <Chart
+                            width={'400px'}
+          height={'500px'}
           chartType="ScatterChart"
           loader={<div>Loading Chart</div>}
           data= {scat}
@@ -321,12 +314,13 @@ render(){
             legend: 'none',
             trendlines: { 0: {} },
           }}
-          rootProps={{ 'data-testid': '1' }}
-        />
-        
-        <Chart
-          width={'500px'}
-          height={'300px'}
+                            rootProps={{ 'data-testid': '1' }}
+                        />
+                    </Col>
+                     <Col>
+                        <Chart
+                             width={'400px'}
+          height={'500px'}
           chartType="BarChart"
           loader={<div>Loading Chart</div>}
           data={bub}
@@ -341,10 +335,286 @@ render(){
               title: 'Continent',
             },
           }}
-          rootProps={{ 'data-testid': '1' }}
-        />
-      
-        </div>    
+                            rootProps={{ 'data-testid': '1' }}
+                        />
+                    </Col>
+                </Row>
+            </Grid>
+            </MediaQuery>
+            <MediaQuery query = "(max-width: 1600px)">
+            <MediaQuery query = "(min-width: 1200px)">
+
+            <h1  style = {{textAlign: 'center', color: 'black', fontFamily: 'verdana'}}>  WELCOME USER !</h1>
+            <p></p>
+            <p></p>
+            <p></p>
+
+
+            <Grid fluid>
+             
+                <Row>
+                    <Col >
+                        <Chart  
+                            width={'400px'}
+                height={'500px'}
+                chartType="ColumnChart"
+                loader={<div>Loading Chart</div>}
+                data={col}
+                options={{
+                  title: 'Eye color of people',
+                  chartArea: { width: '30%' },
+                  hAxis: {
+                    title: 'Eye color',
+                    minValue: 0,
+                  },
+                  vAxis: {
+                    title: 'Number of people',
+                  },
+                }}
+                legendToggle/>
+                    </Col>
+                     <Col >
+                        <Chart
+                             width={'400px'}
+                             height={'500px'}
+                            chartType="PieChart"
+                            loader={<div>Loading Chart</div>}
+                             data={pie}
+                            options={{
+            title: 'Favorite colors',
+            is3D: true,
+          }}
+                             rootProps={{ 'data-testid': '2' }}
+                        />
+                    </Col>
+
+                    <Col  >
+                        <Chart
+                            width={'400px'}
+          height={'500px'}
+          chartType="ScatterChart"
+          loader={<div>Loading Chart</div>}
+          data= {scat}
+          options={{
+            title: 'Grade Point Average vs Education Coefficient',
+            hAxis: { title: 'Education Coefficient' },
+            vAxis: { title: 'Grade Point Average' },
+            legend: 'none',
+            trendlines: { 0: {} },
+          }}
+                            rootProps={{ 'data-testid': '1' }}
+                        />
+                    </Col>
+                    </Row>
+                    <Row>
+                     <Col >
+                        <Chart
+                             width={'400px'}
+          height={'500px'}
+          chartType="BarChart"
+          loader={<div>Loading Chart</div>}
+          data={bub}
+          options={{
+            title: 'Comparaison of male and females average money by continent',
+            chartArea: { width: '50%' },
+            hAxis: {
+              title: 'Money',
+              minValue: 0,
+            },
+            vAxis: {
+              title: 'Continent',
+            },
+          }}
+                            rootProps={{ 'data-testid': '1' }}
+                        />
+                    </Col>
+                </Row>
+            </Grid>
+            </MediaQuery>
+            </MediaQuery>
+            <MediaQuery query = "(max-width: 1200px)">
+            <MediaQuery query = "(min-width: 800px)">
+
+            <h1  style = {{textAlign: 'center', color: 'black', fontFamily: 'verdana'}}>  WELCOME USER !</h1>
+            <p></p>
+            <p></p>
+            <p></p>
+
+            <Grid fluid>
+
+                <Row>
+                    <Col >
+                        <Chart  
+                            width={'400px'}
+                height={'500px'}
+                chartType="ColumnChart"
+                loader={<div>Loading Chart</div>}
+                data={col}
+                options={{
+                  title: 'Eye color of people',
+                  chartArea: { width: '30%' },
+                  hAxis: {
+                    title: 'Eye color',
+                    minValue: 0,
+                  },
+                  vAxis: {
+                    title: 'Number of people',
+                  },
+                }}
+                legendToggle/>
+                    </Col>
+                     <Col >
+                        <Chart
+                             width={'400px'}
+                             height={'500px'}
+                            chartType="PieChart"
+                            loader={<div>Loading Chart</div>}
+                             data={pie}
+                            options={{
+            title: 'Favorite colors',
+            is3D: true,
+          }}
+                             rootProps={{ 'data-testid': '2' }}
+                        />
+                    </Col>
+                    </Row>
+                    <Row>
+                    <Col  >
+                        <Chart
+                            width={'400px'}
+          height={'500px'}
+          chartType="ScatterChart"
+          loader={<div>Loading Chart</div>}
+          data= {scat}
+          options={{
+            title: 'Grade Point Average vs Education Coefficient',
+            hAxis: { title: 'Education Coefficient' },
+            vAxis: { title: 'Grade Point Average' },
+            legend: 'none',
+            trendlines: { 0: {} },
+          }}
+                            rootProps={{ 'data-testid': '1' }}
+                        />
+                    </Col>
+                  
+                     <Col >
+                        <Chart
+                             width={'400px'}
+          height={'500px'}
+          chartType="BarChart"
+          loader={<div>Loading Chart</div>}
+          data={bub}
+          options={{
+            title: 'Comparaison of male and females average money by continent',
+            chartArea: { width: '50%' },
+            hAxis: {
+              title: 'Money',
+              minValue: 0,
+            },
+            vAxis: {
+              title: 'Continent',
+            },
+          }}
+                            rootProps={{ 'data-testid': '1' }}
+                        />
+                    </Col>
+                </Row>
+            </Grid>
+            </MediaQuery>
+            </MediaQuery>
+        <MediaQuery query = "(max-width: 800px)">
+        <h1  style = {{textAlign: 'center', color: 'black', fontFamily: 'verdana'}}> WELCOME USER !</h1>
+        <p></p>
+        <p></p>
+        <p></p>
+
+        <Grid fluid>
+           
+                <Row>
+                    <Col >
+                        <Chart  
+                            width={'400px'}
+                height={'500px'}
+                chartType="ColumnChart"
+                loader={<div>Loading Chart</div>}
+                data={col}
+                options={{
+                  title: 'Eye color of people',
+                  chartArea: { width: '30%' },
+                  hAxis: {
+                    title: 'Eye color',
+                    minValue: 0,
+                  },
+                  vAxis: {
+                    title: 'Number of people',
+                  },
+                }}
+                legendToggle/>
+                    </Col>
+                    </Row>
+                    <Row>
+                     <Col >
+                        <Chart
+                             width={'400px'}
+                             height={'500px'}
+                            chartType="PieChart"
+                            loader={<div>Loading Chart</div>}
+                             data={pie}
+                            options={{
+            title: 'Favorite colors',
+            is3D: true,
+          }}
+                             rootProps={{ 'data-testid': '2' }}
+                        />
+                    </Col>
+                    </Row>
+                    <Row>
+                    <Col xs = {12} >
+                        <Chart
+                            width={'400px'}
+          height={'500px'}
+          chartType="ScatterChart"
+          loader={<div>Loading Chart</div>}
+          data= {scat}
+          options={{
+            title: 'Grade Point Average vs Education Coefficient',
+            hAxis: { title: 'Education Coefficient' },
+            vAxis: { title: 'Grade Point Average' },
+            legend: 'none',
+            trendlines: { 0: {} },
+          }}
+                            rootProps={{ 'data-testid': '1' }}
+                        />
+                    </Col>
+                    </Row>
+                    <Row>
+                     <Col xs = {12}>
+                        <Chart
+                             width={'400px'}
+          height={'500px'}
+          chartType="BarChart"
+          loader={<div>Loading Chart</div>}
+          data={bub}
+          options={{
+            title: 'Comparaison of male and females average money by continent',
+            chartArea: { width: '50%' },
+            hAxis: {
+              title: 'Money',
+              minValue: 0,
+            },
+            vAxis: {
+              title: 'Continent',
+            },
+          }}
+                            rootProps={{ 'data-testid': '1' }}
+                        />
+                    </Col>
+                </Row>
+            </Grid>
+            </MediaQuery>
+  
+      </div>
+
         );
 
 

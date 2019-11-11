@@ -15,20 +15,21 @@ export default class Page1 extends React.Component {
 
     onUpdate (val) {
           this.setState({ isLoggedIn: val })
-          console.log("updating page with "+this.state.isLoggedIn);
       };
 
     render(){
-        console.log("[page1] test with isloggedin : "+this.state.isLoggedIn)
         if(this.state.isLoggedIn === "true"){
-        console.log("Affichage ndpage : "+this.state.isLoggedIn)
-        return <NdPage />;
+        return (<NdPage />
+            );
       }
     
          
         
-        else {        return <NameForm onUpdate={this.onUpdate}/>;
-    }
+        else {        return (
+            <div >
+             <NameForm onUpdate={this.onUpdate}/> ;
+        </div> )
+    }   
 
     }
 
