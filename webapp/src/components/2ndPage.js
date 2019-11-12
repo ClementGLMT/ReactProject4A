@@ -258,7 +258,7 @@ render(){
 
         <div>
         <MediaQuery query= "(min-width: 1600px)">
-        <h1  style = {{textAlign: 'center', color: 'black', fontFamily: 'verdana' }}> WELCOME USER !</h1>
+        <h1  style = {{textAlign: 'center', color: 'black', fontFamily: 'verdana' }}> WELCOME USER, HERE IS YOUR DATA !</h1>
         <p></p>
         <p></p>
         <p></p>
@@ -344,7 +344,7 @@ render(){
             <MediaQuery query = "(max-width: 1600px)">
             <MediaQuery query = "(min-width: 1200px)">
 
-            <h1  style = {{textAlign: 'center', color: 'black', fontFamily: 'verdana'}}>  WELCOME USER !</h1>
+            <h1  style = {{textAlign: 'center', color: 'black', fontFamily: 'verdana'}}>  WELCOME USER, HERE IS YOUR DATA !</h1>
             <p></p>
             <p></p>
             <p></p>
@@ -435,7 +435,7 @@ render(){
             <MediaQuery query = "(max-width: 1200px)">
             <MediaQuery query = "(min-width: 800px)">
 
-            <h1  style = {{textAlign: 'center', color: 'black', fontFamily: 'verdana'}}>  WELCOME USER !</h1>
+            <h1  style = {{textAlign: 'center', color: 'black', fontFamily: 'verdana'}}>  WELCOME USER, HERE IS YOUR DATA !</h1>
             <p></p>
             <p></p>
             <p></p>
@@ -523,7 +523,7 @@ render(){
             </MediaQuery>
             </MediaQuery>
         <MediaQuery query = "(max-width: 800px)">
-        <h1  style = {{textAlign: 'center', color: 'black', fontFamily: 'verdana'}}> WELCOME USER !</h1>
+        <h1  style = {{textAlign: 'center', color: 'black', fontFamily: 'verdana'}}> WELCOME USER, HERE IS YOUR DATA !</h1>
         <p></p>
         <p></p>
         <p></p>
